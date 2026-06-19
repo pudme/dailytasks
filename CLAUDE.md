@@ -60,7 +60,14 @@ Last updated <Month> <Day>, <Year> by Claude
 
 Rules for the content:
 - The **Today** section header must always use the current date.
-- Tasks that were previously checked (`[x]`) should be **removed** (they are done).
+- Tasks that were previously checked (`[x]`) must **not** be deleted. Instead,
+  move them to the **Completed Tasks** page (ID `38494fa6010c8020950cdcc26cfe2630`)
+  by calling `mcp__Notion__notion-update-page` with `command: insert_content` and
+  `position: {"type": "end"}`. Append each completed task as a checked markdown
+  checkbox (`- [x] <task text>`) prefixed with the completion date:
+  `- [x] **<Month> <Day>, <Year>** — <task text>`.
+  Do this **before** writing the updated ToDo so nothing is lost.
+- After archiving, omit the completed tasks from the ToDo replacement content.
 - New action items discovered in meeting notes should be **added** to the
   appropriate section with a citation link back to the meeting page.
 - Preserve any unchecked tasks from the previous version that are not yet done.
@@ -75,6 +82,7 @@ to the Notion write — always do the Notion write first.
 | Page | ID |
 |------|----|
 | Claude's ToDo | `37994fa6010c814b8162ef59db7ca9ab` |
+| Completed Tasks | `38494fa6010c8020950cdcc26cfe2630` |
 | Recorded Meetings index | `782685ced07245419c880a9c7948a232` |
 | My Tasks database | `d2f025bcce6c4d6b94a736c8038c07f1` |
 ## Key context
