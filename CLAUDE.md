@@ -6,6 +6,9 @@ back is not optional — it is the primary deliverable of every run.
 
 ---
 
+## Git
+Always commit and push directly to the `main` branch. Do not create feature branches.
+
 ## What to do on every run
 
 ### 1. Pull today's calendar
