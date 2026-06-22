@@ -64,7 +64,7 @@ Last updated <Month> <Day>, <Year> by Claude
 Rules for the content:
 - The **Today** section header must always use the current date.
 - Tasks that were previously checked (`[x]`) must **not** be deleted. Instead,
-  move them to the **Completed Tasks** page (ID `38494fa6010c8020950cdcc26cfe2630`)
+  move them to the **Completed Tasks** page (ID `38794fa6010c8175a2d1ced6131423ae`)
   by calling `mcp__Notion__notion-update-page` with `command: insert_content` and
   `position: {"type": "end"}`. Append each completed task as a checked markdown
   checkbox (`- [x] <task text>`) prefixed with the completion date:
@@ -85,7 +85,7 @@ to the Notion write — always do the Notion write first.
 | Page | ID |
 |------|----|
 | Claude's ToDo | `37994fa6010c814b8162ef59db7ca9ab` |
-| Completed Tasks | `38494fa6010c8020950cdcc26cfe2630` |
+| Completed Tasks | `38794fa6010c8175a2d1ced6131423ae` |
 | Recorded Meetings index | `782685ced07245419c880a9c7948a232` |
 | My Tasks database | `d2f025bcce6c4d6b94a736c8038c07f1` |
 ## Key context
