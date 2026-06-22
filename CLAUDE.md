@@ -70,6 +70,12 @@ Rules for the content:
   checkbox (`- [x] <task text>`) prefixed with the completion date:
   `- [x] **<Month> <Day>, <Year>** — <task text>`.
   Do this **before** writing the updated ToDo so nothing is lost.
+- **IMPORTANT:** The Completed Tasks page must **never** be a child page of
+  Claude's ToDo. The `replace_content` + `allow_deleting_content: true` call
+  will silently delete any child pages of Claude's ToDo that are not referenced
+  in the replacement content. Completed Tasks lives under the BOP page
+  (`2ae94fa6010c804c9f41c7ea5da52eea`) as a sibling of Claude's ToDo — do not
+  move it.
 - After archiving, omit the completed tasks from the ToDo replacement content.
 - New action items discovered in meeting notes should be **added** to the
   appropriate section with a citation link back to the meeting page.
