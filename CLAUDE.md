@@ -18,7 +18,9 @@ prep notes from the description.
 
 ### 2. Pull open tasks from Notion
 Fetch the **Claude's ToDo** page (ID `37994fa6010c814b8162ef59db7ca9ab`) to
-get the current task list.
+get the current task list. Record **every unchecked task** currently on the
+page, including any that have no meeting citation — these are tasks the user
+added manually and must be preserved exactly as written.
 
 ### 3. Pull action items from recent recorded meetings
 Fetch the **Recorded Meetings** index page
@@ -71,9 +73,15 @@ Rules for the content:
   `- [x] **<Month> <Day>, <Year>** — <task text>`.
   Do this **before** writing the updated ToDo so nothing is lost.
 - After archiving, omit the completed tasks from the ToDo replacement content.
+- **Every unchecked task currently on the page must appear in the replacement
+  content**, including tasks the user added manually (i.e. tasks with no meeting
+  citation). Do not drop or rewrite them — copy them verbatim into whichever
+  section fits (Today, This Week, Active, or Backlog). If a user-added task has
+  no obvious section, place it in Active. The only tasks that may be omitted are
+  ones that are checked `[x]` (completed) or that are exact duplicates of
+  another task already present.
 - New action items discovered in meeting notes should be **added** to the
   appropriate section with a citation link back to the meeting page.
-- Preserve any unchecked tasks from the previous version that are not yet done.
 - Keep 🔴 emoji prefix for overdue or hard-deadline items.
 - Link each task to its source meeting page using Markdown links.
 ### 6. Output a summary in chat
