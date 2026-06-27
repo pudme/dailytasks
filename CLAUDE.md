@@ -84,42 +84,10 @@ Rules for the content:
   appropriate section with a citation link back to the meeting page.
 - Keep 🔴 emoji prefix for overdue or hard-deadline items.
 - Link each task to its source meeting page using Markdown links.
-### 6. Write the daily note to Obsidian — REQUIRED STEP
-After writing to Notion, push a daily note to the Obsidian vault repo
-(`pudme/obsidian-vault`) using `mcp__github__create_or_update_file`.
-
-- **Path:** `Michael/Daily Notes/YYYY-MM-DD.md` (use today's date, e.g. `2026-06-27.md`)
-- **Branch:** `main`
-- **Commit message:** `Daily plan YYYY-MM-DD`
-- **Content:** A clean Markdown file with this structure:
-
-```
-# Daily Plan — <Weekday>, <Month> <Day>, <Year>
-
-## Meetings
-<chronological list with times, or "No meetings scheduled.">
-
-## Top Priorities
-<numbered list of the 3–5 priority items, one sentence each>
-
-## Work Blocks
-<suggested time blocks, e.g. "**Morning** — ...">
-
-## This Week
-<bullet list of This Week tasks (titles only, no meeting citation links)>
-
-## Upcoming Milestones
-<bullet list from the Milestones section>
-```
-
-If the file already exists for today (e.g. the routine ran twice), overwrite it — fetch
-the existing file's SHA first with `mcp__github__get_file_contents` and pass it as
-`sha` in the update call.
-
-### 7. Output a summary in chat
-After writing to Notion and Obsidian, output the daily plan as formatted text in the
+### 6. Output a summary in chat
+After writing to Notion, output the daily plan as formatted text in the
 conversation so it is readable in the session transcript. This is secondary
-to the Notion write — always do the Notion and Obsidian writes first.
+to the Notion write — always do the Notion write first.
 ---
 ## Key Notion pages
 | Page | ID |
