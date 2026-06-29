@@ -66,7 +66,7 @@ Last updated <Month> <Day>, <Year> by Claude
 Rules for the content:
 - The **Today** section header must always use the current date.
 - Tasks that were previously checked (`[x]`) must **not** be deleted. Instead,
-  move them to the **Completed Tasks** page (ID `38494fa6010c8020950cdcc26cfe2630`)
+  move them to the **Completed Tasks** page (ID `38e94fa6010c8143a025dae32dc46d1d`)
   by calling `mcp__Notion__notion-update-page` with `command: insert_content` and
   `position: {"type": "end"}`. Append each completed task as a checked markdown
   checkbox (`- [x] <task text>`) prefixed with the completion date:
@@ -84,6 +84,8 @@ Rules for the content:
   appropriate section with a citation link back to the meeting page.
 - Keep 🔴 emoji prefix for overdue or hard-deadline items.
 - Link each task to its source meeting page using Markdown links.
+- **Always include the following line at the very end of the replacement content**, after the "Last updated" line. This is what prevents Notion from deleting the Completed Tasks child page during `replace_content`:
+  `[→ Completed Tasks](https://app.notion.com/p/38e94fa6010c8143a025dae32dc46d1d)`
 ### 6. Output a summary in chat
 After writing to Notion, output the daily plan as formatted text in the
 conversation so it is readable in the session transcript. This is secondary
@@ -93,7 +95,7 @@ to the Notion write — always do the Notion write first.
 | Page | ID |
 |------|----|
 | Claude's ToDo | `37994fa6010c814b8162ef59db7ca9ab` |
-| Completed Tasks | `38494fa6010c8020950cdcc26cfe2630` |
+| Completed Tasks | `38e94fa6010c8143a025dae32dc46d1d` |
 | Recorded Meetings index | `782685ced07245419c880a9c7948a232` |
 | My Tasks database | `d2f025bcce6c4d6b94a736c8038c07f1` |
 ## Key context
