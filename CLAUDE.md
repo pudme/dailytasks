@@ -37,7 +37,13 @@ highest-priority items for the day.
 Call `mcp__Notion__notion-update-page` with:
 - `page_id`: `37994fa6010c814b8162ef59db7ca9ab`
 - `command`: `replace_content`
-- `allow_deleting_content`: `true`
+- Do **not** set `allow_deleting_content` (leave it `false`/omitted). The ToDo
+  page should never need to delete a block or child page — if the tool ever
+  errors out saying content would be deleted, that means something unexpected
+  is being removed. **Stop and ask the user** rather than retrying with
+  `allow_deleting_content: true`. (See the incident note under Key Notion
+  pages — this exact flag previously caused the Completed Tasks page to be
+  trashed.)
 
 The replacement content must follow this structure (Notion-flavored Markdown):
 Today — <Weekday>, <Month> <Day>, <Year>
@@ -84,7 +90,7 @@ Rules for the content:
   appropriate section with a citation link back to the meeting page.
 - Keep 🔴 emoji prefix for overdue or hard-deadline items.
 - Link each task to its source meeting page using Markdown links.
-- **Always include the following line at the very end of the replacement content**, after the "Last updated" line. This is what prevents Notion from deleting the Completed Tasks child page during `replace_content`:
+- **Always include the following line at the very end of the replacement content**, after the "Last updated" line, as a navigational convenience (this link is no longer what protects the page — see incident note below):
   `[→ Completed Tasks](https://app.notion.com/p/38e94fa6010c8143a025dae32dc46d1d)`
 ### 6. Output a summary in chat
 After writing to Notion, output the daily plan as formatted text in the
@@ -98,6 +104,29 @@ to the Notion write — always do the Notion write first.
 | Completed Tasks | `38e94fa6010c8143a025dae32dc46d1d` |
 | Recorded Meetings index | `782685ced07245419c880a9c7948a232` |
 | My Tasks database | `d2f025bcce6c4d6b94a736c8038c07f1` |
+
+**Incident note (2026-07-01):** Completed Tasks used to be a nested child
+page *under* Claude's ToDo. Every `replace_content` call on the ToDo page
+(with `allow_deleting_content: true`) moved it to Trash, because a plain
+Markdown link to the page does **not** count as "referencing" a child page
+block in Notion's eyes — only an actual embedded page block does, and the
+routine's content never included one. This had already happened once before:
+the original Completed Tasks page (`38494fa6010c8020950cdcc26cfe2630`) was
+permanently deleted around June 22, which is why the page ID in this file
+was changed to a freshly-created replacement (`38e94fa6...`) on June 29 —
+that fix only added the same ineffective link-at-the-end workaround, so the
+new page got trashed again by June 30's run. (There's also an abandoned,
+empty duplicate "Completed Tasks" page from ~June 22 living under BOP →
+Apprio, presumably a discarded recreation attempt — harmless leftover
+clutter, not otherwise touched.)
+Real fix applied: the current Completed Tasks page was restored from Trash
+and **moved out from under Claude's ToDo to the workspace top level**, so
+it's structurally independent and can never be caught up in a ToDo-page
+content replacement again, regardless of what that content contains.
+Combined with dropping `allow_deleting_content` from the write-back call
+(above), this closes the hole permanently — do not re-nest Completed Tasks
+under Claude's ToDo, and do not re-add `allow_deleting_content: true` to
+that call.
 ## Key context
 - **Company:** Aprio (government side); splitting from CanAid ~July 1, 2026
 - **Role:** Senior Cybersecurity Architect → CISO as of July 1
