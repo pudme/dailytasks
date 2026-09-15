@@ -221,5 +221,6 @@ IT/security policy documents), where a wrong company name would propagate
 into certification artifacts.
 
 A related token, "Veritasync", also appears in the Notion notes (Aug 28
-meeting) in both task text and a meeting title. Its correct form has not been
-confirmed — leave it as-is and ask Michael rather than guessing.
+meeting) in both task text and a meeting title. Michael reviewed it on
+2026-09-15 and decided it stays as-is. Leave it alone and don't raise it
+again — it is not the company name and corrupts nothing downstream.
