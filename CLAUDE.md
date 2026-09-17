@@ -10,7 +10,18 @@ they are the deliverables of every run.
 ## Git
 Commit and push to the working branch this session was assigned (Claude Code on
 the web generates one per session, e.g. `claude/vibrant-wozniak-qkbtet`), then
-open a pull request against `main`. Do not commit directly to `main`.
+open a pull request against `main` **and merge it** with
+`mcp__github__merge_pull_request`. Do not commit directly to `main`.
+
+Merging is part of the job, not a follow-up. Leaving the PR open means the next
+scheduled run checks out `main`, reads the previous version of this file, and
+behaves as though your change never happened. No review wait is needed — this is
+a single-owner repo and the routine is expected to land its own changes.
+
+If the merge is refused — a conflict with `main`, a failing required check, or a
+branch protection rule — stop and say so plainly in the run summary, with the
+PR link and the reason. Do not force the merge, retarget the PR, close and
+reopen it, or push to `main` directly to get around it.
 
 ## What to do on every run
 
